@@ -2,5 +2,7 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_161"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/Users/petri.ryynanen/git/REST_API_Automation/REST_API_Automation/TestNG/jcommander-1.69.jar"/>
+	<classpathentry kind="lib" path="C:/Users/petri.ryynanen/git/REST_API_Automation/REST_API_Automation/TestNG/testng-6.11.jar" sourcepath="TestNG/testng-6.9.6-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
