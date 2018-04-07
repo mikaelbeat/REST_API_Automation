@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_161"/>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="TestNG_Training"/>
 	<classpathentry kind="lib" path="E:/Git/REST_API_Automation/REST_API_Automation/TestNG/jcommander-1.69.jar"/>
 	<classpathentry kind="lib" path="E:/Git/REST_API_Automation/REST_API_Automation/TestNG/testng-6.9.6-sources.jar"/>
 	<classpathentry kind="lib" path="E:/Git/REST_API_Automation/REST_API_Automation/TestNG/testng-6.11.jar" sourcepath="TestNG/testng-6.9.6-sources.jar"/>
