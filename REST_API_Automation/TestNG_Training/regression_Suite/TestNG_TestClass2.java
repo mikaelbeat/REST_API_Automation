@@ -13,7 +13,7 @@ public class TestNG_TestClass2 extends Base_Test_Suite {
 	
 	@BeforeClass
 	public void setUp() {
-		System.out.println("\nTestNG_TestClass2 ->This runs first in class.");
+		System.out.println("\nTestNG_TestClass2 -> This runs first in class.");
 	}
 	
 	@BeforeMethod
