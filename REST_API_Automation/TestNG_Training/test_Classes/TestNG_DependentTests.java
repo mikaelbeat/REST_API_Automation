@@ -21,7 +21,7 @@ public class TestNG_DependentTests {
 		System.out.println("Test cleanUp.");
 	}
 
-	@Test(dependsOnMethods = {"testMethod2"})
+	@Test(dependsOnMethods = {"testMethod2"},alwaysRun = true)
 	public void testMethod1() {
 		System.out.println("testMethod1");
 

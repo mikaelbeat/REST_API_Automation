@@ -1,9 +1,15 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Regression TestSuite">
-	<test name="Application Test">
+<suite name="Preserve Enabled TestSuite">
+	<test name="Test 1" preserve-order="true">
 		<classes>
-			<class name="test_Classes.TestNG_TestClass1"></class>
-			<class name="test_Classes.TestNG_TestClass2"></class>
+			<class name="test_Classes.TestNG_Preserve2"></class>
+			<class name="test_Classes.TestNG_Preserve1"></class>
+		</classes>
+	</test>
+	<test name="Test 2" enabled="false">
+		<classes>
+			<class name="test_Classes.TestNG_Preserve2"></class>
+			<class name="test_Classes.TestNG_Preserve1"></class>
 		</classes>
 	</test>
 </suite>
