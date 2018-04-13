@@ -6,10 +6,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import listeners_Package.CustomListener1;
+import listeners_Package.CustomListener2;
 
-@Listeners(CustomListener1.class)
-public class TestNG_ListenersTest1 {
+@Listeners(CustomListener2.class)
+public class TestNG_ListenersTest2 {
 	
 	@BeforeClass
 	public  void setUp() {

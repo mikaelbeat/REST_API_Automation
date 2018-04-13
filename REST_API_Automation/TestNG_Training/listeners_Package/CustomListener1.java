@@ -4,7 +4,7 @@ import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
 
-public class CustomerListener1 implements IInvokedMethodListener{
+public class CustomListener1 implements IInvokedMethodListener{
 
 	@Override
 	public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
