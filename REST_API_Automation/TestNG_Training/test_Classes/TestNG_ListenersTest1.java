@@ -3,12 +3,12 @@ package test_Classes;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Listeners;
+//import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import listeners_Package.CustomListener1;
+//import listeners_Package.CustomListener1;
 
-@Listeners(CustomListener1.class)
+//@Listeners(CustomListener1.class)
 public class TestNG_ListenersTest1 {
 	
 	@BeforeClass
