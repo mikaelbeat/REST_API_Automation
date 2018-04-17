@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Listeners TestSuite">
 	<listeners>
-		<listener class-name="listeners_Package.CustomListener3"></listener>
+		<listener class-name="listeners_Package.CustomListeners"></listener>
 	</listeners>
 	<test name="Application Test 1">
 		<classes>
