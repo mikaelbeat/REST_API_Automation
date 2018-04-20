@@ -1,14 +1,13 @@
 package basic;
 
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-import static org.hamcrest.Matchers.equalTo;
-
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 
 public class Validate_Response {
 	
