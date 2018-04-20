@@ -1,6 +1,8 @@
 package basic;
 
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
+
 import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeClass;
@@ -23,9 +25,25 @@ public class Get_Request_Demo {
 		given().param("units", "imperial")
 			   .param("origins", "Washington,DC")
 			   .param("destinations", "New+York+City")
-			   .param("key", "AIzaSyD9jDyAwytS-zudoP9PyNh-AyFXzwOTX-Q")
+			   .param("key", "AIzaSyA49xhTOHmabT9vU8Li-Pu6qdc8HEtawi8")
 		.when().get("/distancematrix/json")
 		.then().statusCode(200);
 	}
+	
+	@Test
+	public void get_Response_Body() {
+		Response res = 
+		given()
+			.param("units", "imperial")
+			.param("origins", "Washington,DC")
+			.param("destinations", "New+York+City,NY")
+			.param("key", "AIzaSyA49xhTOHmabT9vU8Li-Pu6qdc8HEtawi8")
+		.when()
+			.get("/distancematrix/json");
+		
+//		System.out.println(res.body().asString());
+		System.out.println(res.body().prettyPrint());
+	}
+	
 
 }
