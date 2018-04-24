@@ -50,5 +50,7 @@
 	<classpathentry kind="lib" path="C:/Users/petri.ryynanen/git/Libs/scala-support-3.0.7-dist/scala-library-2.11.12.jar"/>
 	<classpathentry kind="lib" path="C:/Users/petri.ryynanen/git/Libs/scala-support-3.0.7-dist/scala-support-3.0.7.jar"/>
 	<classpathentry kind="lib" path="C:/Users/petri.ryynanen/git/Libs/xml-path-3.0.7-dist/xml-path-3.0.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/petri.ryynanen/git/Libs/Scribe/scribejava-apis-2.5.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/petri.ryynanen/git/Libs/Scribe/scribejava-core-2.5.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
