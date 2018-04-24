@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 public class Twitter_GET_Response {
@@ -40,7 +41,14 @@ public class Twitter_GET_Response {
 			   .extract().response();
 		
 		String id = response.path("id_str");
-		System.out.println(id);
+		System.out.println("The response.path: " + id);
+		
+		String responseString = response.asString();
+		System.out.println(responseString);
+		
+		JsonPath jsPath = new JsonPath(responseString);
+		String name = jsPath.get("user.name");
+		System.out.println(name);
 	}
 
 }
