@@ -66,9 +66,9 @@ public class Twitter_GET_Request {
 		given()
 			   .auth()
 			   .oauth(consumerKey, cunsumerSecretKey, accessToken, accessTokenSecret)
-			   .queryParam("id", tweetId)
+			   .pathParam("id", tweetId)
 		.when()
-			   .post("/destroy.json")
+			   .post("/destroy/{id}.json")
 		.then()
 			   .statusCode(200);
 	}
