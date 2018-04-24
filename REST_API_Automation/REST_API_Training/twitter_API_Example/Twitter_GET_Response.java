@@ -8,8 +8,9 @@ import org.testng.annotations.Test;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 
-public class Twitter_POST_Request {
+public class Twitter_GET_Response {
 	
 	// Given -> I have this information
 	// When -> I perform this action
@@ -28,14 +29,18 @@ public class Twitter_POST_Request {
 
 	@Test
 	public void validate_StatusCode() {
-		given()
+		Response response = given()
 			   .auth()
 			   .oauth(consumerKey, cunsumerSecretKey, accessToken, accessTokenSecret)
 			   .queryParam("status", "My first tweet.")
 		.when()
 			   .post("/update.json")
 		.then()
-			   .statusCode(200);
+			   .statusCode(200)
+			   .extract().response();
+		
+		String id = response.path("id_str");
+		System.out.println(id);
 	}
 
 }
