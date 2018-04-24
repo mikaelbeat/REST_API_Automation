@@ -48,7 +48,7 @@ public class Twitter_GET_Response {
 		
 		JsonPath jsPath = new JsonPath(responseString);
 		String name = jsPath.get("user.name");
-		System.out.println(name);
+		System.out.println("The username is: " + name);
 	}
 
 }
