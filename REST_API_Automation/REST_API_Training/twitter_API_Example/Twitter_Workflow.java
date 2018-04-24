@@ -11,7 +11,7 @@ import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
-public class Twitter_GET_Response {
+public class Twitter_Workflow {
 	
 	// Given -> I have this information
 	// When -> I perform this action
@@ -29,7 +29,7 @@ public class Twitter_GET_Response {
 	}
 
 	@Test
-	public void validate_StatusCode() {
+	public void get_Response() {
 		Response response = given()
 			   .auth()
 			   .oauth(consumerKey, cunsumerSecretKey, accessToken, accessTokenSecret)
