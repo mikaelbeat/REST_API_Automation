@@ -1,4 +1,4 @@
-package twitter_API_Example;
+package loggin_Example;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
@@ -8,10 +8,8 @@ import org.testng.annotations.Test;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
 
-public class Twitter_Workflow {
+public class Request_Logging_Example {
 	
 	// Given -> I have this information
 	// When -> I perform this action
@@ -29,26 +27,21 @@ public class Twitter_Workflow {
 	}
 
 	@Test
-	public void get_Response() {
-		Response response = given()
+	public void testMethod() {
+		 given()
+		 	.log()
+//		 	.headers()
+//		 	.body()
+//		 	.parameters()
+//		 	.all()
+		 	.ifValidationFails()
 			.auth()
 			.oauth(consumerKey, cunsumerSecretKey, accessToken, accessTokenSecret)
 			.queryParam("status", "My first tweet.")
 		.when()
 			.post("/update.json")
 		.then()
-			.statusCode(200)
-			.extract().response();
-		
-		String id = response.path("id_str");
-		System.out.println("The response.path: " + id);
-		
-		String responseString = response.asString();
-		System.out.println(responseString);
-		
-		JsonPath jsPath = new JsonPath(responseString);
-		String name = jsPath.get("user.name");
-		System.out.println("The username is: " + name);
+			.statusCode(200);
 	}
 
 }

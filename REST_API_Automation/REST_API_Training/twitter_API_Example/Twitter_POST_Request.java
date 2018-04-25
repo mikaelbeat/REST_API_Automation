@@ -28,14 +28,14 @@ public class Twitter_POST_Request {
 
 	@Test
 	public void validate_StatusCode() {
-		given()
-			   .auth()
-			   .oauth(consumerKey, cunsumerSecretKey, accessToken, accessTokenSecret)
-			   .queryParam("status", "My first tweet.")
+		 given()
+			.auth()
+			.oauth(consumerKey, cunsumerSecretKey, accessToken, accessTokenSecret)
+			.queryParam("status", "My first tweet.")
 		.when()
-			   .post("/update.json")
+			.post("/update.json")
 		.then()
-			   .statusCode(200);
+			.statusCode(200);
 	}
 
 }

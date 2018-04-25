@@ -32,14 +32,14 @@ public class Twitter_GET_Request {
 	@Test
 	public void post_Tweet() {
 		Response response = given()
-			   .auth()
-			   .oauth(consumerKey, cunsumerSecretKey, accessToken, accessTokenSecret)
-			   .queryParam("status", "My first tweet.")
+			.auth()
+			.oauth(consumerKey, cunsumerSecretKey, accessToken, accessTokenSecret)
+			.queryParam("status", "My first tweet.")
 		.when()
-			   .post("/update.json")
+			.post("/update.json")
 		.then()
-			   .statusCode(200)
-			   .extract().response();
+			.statusCode(200)
+			.extract().response();
 		
 		tweetId = response.path("id_str");
 		System.out.println("The response.path: " + tweetId);
@@ -49,13 +49,13 @@ public class Twitter_GET_Request {
 	@Test(dependsOnMethods = {"post_Tweet"})
 	public void read_Tweet() {
 		Response response = given()
-			   .auth()
-			   .oauth(consumerKey, cunsumerSecretKey, accessToken, accessTokenSecret)
-			   .queryParam("id", tweetId)
+			.auth()
+			.oauth(consumerKey, cunsumerSecretKey, accessToken, accessTokenSecret)
+			.queryParam("id", tweetId)
 		.when()
-			   .get("/show.json")
+			.get("/show.json")
 		.then()
-			   .extract().response();
+			.extract().response();
 		
 		String text = response.path("text");
 		System.out.println("The tweet text is: " + text);
@@ -64,13 +64,13 @@ public class Twitter_GET_Request {
 	@Test(dependsOnMethods = {"read_Tweet"})
 	public void delete_Tweet() {
 		given()
-			   .auth()
-			   .oauth(consumerKey, cunsumerSecretKey, accessToken, accessTokenSecret)
-			   .pathParam("id", tweetId)
+			.auth()
+			.oauth(consumerKey, cunsumerSecretKey, accessToken, accessTokenSecret)
+			.pathParam("id", tweetId)
 		.when()
-			   .post("/destroy/{id}.json")
+			.post("/destroy/{id}.json")
 		.then()
-			   .statusCode(200);
+			.statusCode(200);
 	}
 
 }
