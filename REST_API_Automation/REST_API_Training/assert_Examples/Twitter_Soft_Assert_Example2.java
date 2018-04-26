@@ -1,7 +1,9 @@
-package loggin_Example;
+package assert_Examples;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.lessThan;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -9,7 +11,7 @@ import org.testng.annotations.Test;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
-public class Response_Logging_Example {
+public class Twitter_Soft_Assert_Example2 {
 	
 	// Given -> I have this information
 	// When -> I perform this action
@@ -27,20 +29,20 @@ public class Response_Logging_Example {
 	}
 
 	@Test
-	public void testMethod() {
+	public void read_Tweets() {
 		 given()
-		 	.auth()
+			.auth()
 			.oauth(consumerKey, cunsumerSecretKey, accessToken, accessTokenSecret)
-			.queryParam("status", "My first tweet. #Pullaa")
+			.queryParam("user_id", "MikaelBeat")
 		.when()
-			.post("/update.json")
+			.get("/user_timeline.json")
 		.then()
-			.log()
-//			.headers()
-//			.body()
-			.all()
-//			.ifError()
-			.statusCode(200);
+			.statusCode(200)
+			.body("user.name", hasItem("Petri Ryynänen"))
+			// Putting assertions inside one body method acts as soft assertion
+			.body("entities.hashtags[1].text", hasItem("Pullaa"),
+					"entities.hashtags[0].size()", equalTo(1),
+					"entities.hashtags[0].size()", lessThan(3));
 	}
 
 }

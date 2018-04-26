@@ -34,7 +34,7 @@ public class Twitter_GET_Request {
 		Response response = given()
 			.auth()
 			.oauth(consumerKey, cunsumerSecretKey, accessToken, accessTokenSecret)
-			.queryParam("status", "My first tweet.")
+			.queryParam("status", "My first tweet. #Pullaa")
 		.when()
 			.post("/update.json")
 		.then()
