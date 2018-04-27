@@ -9,7 +9,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
 
 public class Twitter_Hard_Assert_Example {
 	

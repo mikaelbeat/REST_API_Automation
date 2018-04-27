@@ -1,11 +1,6 @@
 package specs;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasItem;
-import static org.hamcrest.Matchers.lessThan;
-
-import java.util.concurrent.TimeUnit;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -13,7 +8,6 @@ import org.testng.annotations.Test;
 import io.restassured.RestAssured;
 import io.restassured.authentication.AuthenticationScheme;
 import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 
 public class Request_Specification_Demo {

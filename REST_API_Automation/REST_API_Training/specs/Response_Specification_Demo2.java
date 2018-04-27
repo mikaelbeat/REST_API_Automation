@@ -1,18 +1,16 @@
-package useful_Tricks;
+package specs;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItem;
-import static org.hamcrest.Matchers.lessThan;
-
-import java.util.concurrent.TimeUnit;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import io.restassured.RestAssured;
+import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.specification.ResponseSpecification;
 
-public class Twitter_Check_Response_Assertion {
+public class Response_Specification_Demo2 {
 	
 	// Given -> I have this information
 	// When -> I perform this action
@@ -23,12 +21,17 @@ public class Twitter_Check_Response_Assertion {
 	String accessToken = "988679202609291264-foMMhGRXlmuNsfHCaAl9RT5zQFeYpTk";
 	String accessTokenSecret = "n2hgWDPQCF1jZAO1u31jXjRirdpwfN1Jteg6DIlIdWSGN";
 	
+	ResponseSpecBuilder responseBuilder;
+	static ResponseSpecification responseSpec;
+	
 	@BeforeClass
 	public  void setUp() {
 		RestAssured.baseURI = "https://api.twitter.com";
 		RestAssured.basePath = "/1.1/statuses";
-//		It is also possible to define rootpath in before class		
-//		RestAssured.rootPath = "entities.hashtags[1]";
+		responseBuilder = new ResponseSpecBuilder();
+		responseBuilder.expectStatusCode(200);
+		responseBuilder.expectBody("user.name", hasItem("Petri Ryynänen"));
+		responseSpec = responseBuilder.build();
 	}
 
 	@Test
@@ -38,17 +41,14 @@ public class Twitter_Check_Response_Assertion {
 			.oauth(consumerKey, consumerSecretKey, accessToken, accessTokenSecret)
 			.queryParam("user_id", "MikaelBeat")
 		.when()
-			.get("/user_timeline.json")
+			.get("/user_timeline.json")	
 		.then()
-			.statusCode(200)
-			.time(lessThan(3L), TimeUnit.SECONDS)
-			.log().body()
-			.rootPath("user")
-			.body("name", hasItem("Petri Ryynänen"))
-			.body("screen_name", hasItem("MikaelBeat"))
-			.rootPath("entities.hashtags[1]")
-			.body("text", hasItem("Pullaa"))
-			.body("size()", equalTo(1));
+//			All common response parameters have been defined in responseBuilder
+//			.statusCode(200)
+//			.log().body()
+//			.body("user.name", hasItem("Petri Ryynänen"))
+		.spec(responseSpec)
+		.body("user.screen_name", hasItem("MikaelBeat"));
 	}
 
 }

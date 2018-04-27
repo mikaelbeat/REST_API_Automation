@@ -1,12 +1,12 @@
 package basic;
 
-import io.restassured.RestAssured;
-import io.restassured.response.Response;
-
 import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
 
 public class Get_Request_Demo {
 	
