@@ -1,6 +1,10 @@
 package specs;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.lessThan;
+
+import java.util.concurrent.TimeUnit;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -8,9 +12,11 @@ import org.testng.annotations.Test;
 import io.restassured.RestAssured;
 import io.restassured.authentication.AuthenticationScheme;
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
 
-public class Request_Specification_Demo {
+public class Specification_With_Time {
 	
 	// Given -> I have this information
 	// When -> I perform this action
@@ -24,10 +30,11 @@ public class Request_Specification_Demo {
 	RequestSpecBuilder requestBuilder;
 	static RequestSpecification requestSpec;
 	
+	ResponseSpecBuilder responseBuilder;
+	static ResponseSpecification responseSpec;
+	
 	@BeforeClass
 	public  void setUp() {
-//		RestAssured.baseURI = "https://api.twitter.com";
-//		RestAssured.basePath = "/1.1/statuses";
 		AuthenticationScheme authScheme = 
 				RestAssured.oauth(consumerKey, consumerSecretKey, accessToken, accessTokenSecret);
 		requestBuilder = new RequestSpecBuilder();
@@ -36,20 +43,23 @@ public class Request_Specification_Demo {
 		requestBuilder.addQueryParam("user_id", "MikaelBeat");
 		requestBuilder.setAuth(authScheme);
 		requestSpec = requestBuilder.build();
+		
+		responseBuilder = new ResponseSpecBuilder();
+		responseBuilder.expectStatusCode(200);
+		responseBuilder.expectResponseTime(lessThan(3L), TimeUnit.SECONDS);
+		responseBuilder.expectBody("user.name", hasItem("Petri Ryynänen"));
+		responseSpec = responseBuilder.build();
 	}
 
 	@Test
 	public void read_Tweets() {
 		 given()
 		 	.spec(requestSpec)
-//			Parameters have been defined in requestBuilder
-//			.auth()
-//			.oauth(consumerKey, consumerSecretKey, accessToken, accessTokenSecret)
-//			.queryParam("user_id", "MikaelBeat")
 		.when()
 			.get("/user_timeline.json")	
 		.then()
-			.statusCode(200);
+			.spec(responseSpec)
+			.body("user.screen_name", hasItem("MikaelBeat"));
 	}
 
 }
