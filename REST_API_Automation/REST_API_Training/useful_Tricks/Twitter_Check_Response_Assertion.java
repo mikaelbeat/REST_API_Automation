@@ -1,7 +1,11 @@
-package loggin_Example;
+package useful_Tricks;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.lessThan;
+
+import java.util.concurrent.TimeUnit;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -9,7 +13,7 @@ import org.testng.annotations.Test;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
-public class Response_Logging_Example {
+public class Twitter_Check_Response_Assertion {
 	
 	// Given -> I have this information
 	// When -> I perform this action
@@ -24,23 +28,28 @@ public class Response_Logging_Example {
 	public  void setUp() {
 		RestAssured.baseURI = "https://api.twitter.com";
 		RestAssured.basePath = "/1.1/statuses";
+//		It is also possible to define rootpath in before class		
+//		RestAssured.rootPath = "entities.hashtags[1]";
 	}
 
 	@Test
-	public void testMethod() {
+	public void read_Tweets() {
 		 given()
-		 	.auth()
+			.auth()
 			.oauth(consumerKey, consumerSecretKey, accessToken, accessTokenSecret)
-			.queryParam("status", "My first tweet. #Pullaa")
+			.queryParam("user_id", "MikaelBeat")
 		.when()
-			.post("/update.json")
+			.get("/user_timeline.json")
 		.then()
-			.log()
-//			.headers()
-//			.body()
-			.all()
-//			.ifError()
-			.statusCode(200);
+			.statusCode(200)
+			.time(lessThan(3L), TimeUnit.SECONDS)
+			.log().body()
+			.rootPath("user")
+			.body("name", hasItem("Petri Ryynänen"))
+			.body("screen_name", hasItem("MikaelBeat"))
+			.rootPath("entities.hashtags[1]")
+			.body("text", hasItem("Pullaa"))
+			.body("size()", equalTo(1));
 	}
 
 }

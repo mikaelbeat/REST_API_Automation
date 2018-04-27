@@ -18,7 +18,7 @@ public class Twitter_GET_Request {
 	// Then -> This should be the output
 	
 	String consumerKey = "fzDfnjmtGavB1LnB5bWvxMgvH";
-	String cunsumerSecretKey = "LW8wKiFws6GunWMsuTmcM7Yqw9CNIKzCvybYLt010OJRolBYZT";
+	String consumerSecretKey = "LW8wKiFws6GunWMsuTmcM7Yqw9CNIKzCvybYLt010OJRolBYZT";
 	String accessToken = "988679202609291264-foMMhGRXlmuNsfHCaAl9RT5zQFeYpTk";
 	String accessTokenSecret = "n2hgWDPQCF1jZAO1u31jXjRirdpwfN1Jteg6DIlIdWSGN";
 	String tweetId = "";
@@ -33,7 +33,7 @@ public class Twitter_GET_Request {
 	public void post_Tweet() {
 		Response response = given()
 			.auth()
-			.oauth(consumerKey, cunsumerSecretKey, accessToken, accessTokenSecret)
+			.oauth(consumerKey, consumerSecretKey, accessToken, accessTokenSecret)
 			.queryParam("status", "My first tweet. #Pullaa")
 		.when()
 			.post("/update.json")
@@ -50,7 +50,7 @@ public class Twitter_GET_Request {
 	public void read_Tweet() {
 		Response response = given()
 			.auth()
-			.oauth(consumerKey, cunsumerSecretKey, accessToken, accessTokenSecret)
+			.oauth(consumerKey, consumerSecretKey, accessToken, accessTokenSecret)
 			.queryParam("id", tweetId)
 		.when()
 			.get("/show.json")
@@ -65,7 +65,7 @@ public class Twitter_GET_Request {
 	public void delete_Tweet() {
 		given()
 			.auth()
-			.oauth(consumerKey, cunsumerSecretKey, accessToken, accessTokenSecret)
+			.oauth(consumerKey, consumerSecretKey, accessToken, accessTokenSecret)
 			.pathParam("id", tweetId)
 		.when()
 			.post("/destroy/{id}.json")

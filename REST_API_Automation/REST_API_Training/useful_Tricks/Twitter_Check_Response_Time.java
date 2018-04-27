@@ -1,9 +1,11 @@
-package assert_Examples;
+package useful_Tricks;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.lessThan;
+
+import java.util.concurrent.TimeUnit;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -11,7 +13,7 @@ import org.testng.annotations.Test;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
-public class Twitter_Soft_Assert_Example2 {
+public class Twitter_Check_Response_Time {
 	
 	// Given -> I have this information
 	// When -> I perform this action
@@ -26,23 +28,33 @@ public class Twitter_Soft_Assert_Example2 {
 	public  void setUp() {
 		RestAssured.baseURI = "https://api.twitter.com";
 		RestAssured.basePath = "/1.1/statuses";
+//		It is also possible to define rootpath in before class		
+//		RestAssured.rootPath = "entities.hashtags[1]";
 	}
 
 	@Test
 	public void read_Tweets() {
+		long responseTime = 
 		 given()
 			.auth()
 			.oauth(consumerKey, consumerSecretKey, accessToken, accessTokenSecret)
 			.queryParam("user_id", "MikaelBeat")
 		.when()
 			.get("/user_timeline.json")
-		.then()
-			.statusCode(200)
-			.body("user.name", hasItem("Petri Ryynänen"))
-			// Putting assertions inside one body method acts as soft assertion
-			.body("entities.hashtags[1].text", hasItem("Pullaa"),
-					"entities.hashtags[0].size()", equalTo(1),
-					"entities.hashtags[0].size()", lessThan(3));
+//			Gives response time in milliseconds
+//			.time();
+			.timeIn(TimeUnit.SECONDS);
+		System.out.println("Response time: " + responseTime);
+// 		Only response time is measured so no assertions is needed		
+//		.then()
+//			.statusCode(200)
+//			.log().body()
+//			.rootPath("user")
+//			.body("name", hasItem("Petri Ryynänen"))
+//			.body("screen_name", hasItem("MikaelBeat"))
+//			.rootPath("entities.hashtags[1]")
+//			.body("text", hasItem("Pullaa"))
+//			.body("size()", equalTo(1));
 	}
 
 }

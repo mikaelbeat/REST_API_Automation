@@ -18,7 +18,7 @@ public class Twitter_Workflow {
 	// Then -> This should be the output
 	
 	String consumerKey = "fzDfnjmtGavB1LnB5bWvxMgvH";
-	String cunsumerSecretKey = "LW8wKiFws6GunWMsuTmcM7Yqw9CNIKzCvybYLt010OJRolBYZT";
+	String consumerSecretKey = "LW8wKiFws6GunWMsuTmcM7Yqw9CNIKzCvybYLt010OJRolBYZT";
 	String accessToken = "988679202609291264-foMMhGRXlmuNsfHCaAl9RT5zQFeYpTk";
 	String accessTokenSecret = "n2hgWDPQCF1jZAO1u31jXjRirdpwfN1Jteg6DIlIdWSGN";
 	
@@ -32,7 +32,7 @@ public class Twitter_Workflow {
 	public void get_Response() {
 		Response response = given()
 			.auth()
-			.oauth(consumerKey, cunsumerSecretKey, accessToken, accessTokenSecret)
+			.oauth(consumerKey, consumerSecretKey, accessToken, accessTokenSecret)
 			.queryParam("status", "My first tweet.")
 		.when()
 			.post("/update.json")
